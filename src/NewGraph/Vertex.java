@@ -1,11 +1,11 @@
 package NewGraph;
 
-public class Node<T> {
+public class Vertex<T> {
 	private T key;
 	
 	
 
-	public Node(T key) {
+	public Vertex(T key) {
 		super();
 		this.key = key;
 	}
@@ -30,7 +30,7 @@ public class Node<T> {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Node other = (Node) obj;
+		Vertex other = (Vertex) obj;
 		if (key == null) {
 			if (other.key != null)
 				return false;

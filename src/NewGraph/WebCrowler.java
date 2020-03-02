@@ -14,19 +14,19 @@ public class WebCrowler {
 
 	public Graph<String> createGraph(int max_depth) {
 		Graph<String> graph = new Graph<String>();
-		createGraph(url, graph, new HashSet<Node<String>>(), max_depth);
+		createGraph(url, graph, new HashSet<Vertex<String>>(), max_depth);
 		return graph;
 	}
 
-	private void createGraph(String url, Graph<String> graph, Set<Node<String>> visited, int max_depth) {
+	private void createGraph(String url, Graph<String> graph, Set<Vertex<String>> visited, int max_depth) {
 		if (max_depth == 0)
 			return;
 		List<String> listOfUrl = finder.getUrl(url);
-		Node<String> fromNode = new Node<>(url);
+		Vertex<String> fromNode = new Vertex<>(url);
 		visited.add(fromNode);
 		System.out.println(url);
 		for (String connectedUrls : listOfUrl) {
-			Edge<String> edge = new Edge<String>(fromNode, new Node<>(connectedUrls));
+			Edge<String> edge = new Edge<String>(fromNode, new Vertex<>(connectedUrls));
 			graph.addEdge(edge);
 		}
 		for (String urll : listOfUrl) {

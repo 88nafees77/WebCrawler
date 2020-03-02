@@ -7,7 +7,7 @@ public class MainClass {
 		String url = "https://www.geeksforgeeks.org/";
 		WebCrowler crowler = new WebCrowler(url);
 		Graph<String> graph = crowler.createGraph(4);
-		System.out.println(graph.maxCycle(new Node<String>("A")));
+		System.out.println(graph.maxCycle(new Vertex<String>("A")));
 
 	}
 }
