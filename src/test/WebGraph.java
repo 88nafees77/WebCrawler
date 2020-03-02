@@ -5,17 +5,16 @@ import java.util.*;
 public class WebGraph {
 	UrlFinder finder = new UrlFinder();
 
-	public void createGraph(String url, Map<String, Set<String>> map, Set<String> visited, int max_depth) {
+	public void createGraphDfs(String url, Map<String, Set<String>> map, Set<String> visited, int max_depth) {
 		if (max_depth == 0)
 			return;
 		List<String> listOfUrl = finder.getUrl(url);
-		System.out.println("from " + url + " to " + listOfUrl);
 		map.putIfAbsent(url, new HashSet<String>());
 		map.get(url).addAll(listOfUrl);
 		for (String urll : listOfUrl) {
 			if (!visited.contains(urll)) {
 				visited.add(urll);
-				createGraph(urll, map, visited, max_depth - 1);
+				createGraphDfs(urll, map, visited, max_depth - 1);
 			}
 		}
 
@@ -31,7 +30,6 @@ public class WebGraph {
 				if (!visited.contains(newurl)) {
 					visited.add(newurl);
 					List<String> listOfUrl = finder.getUrl(newurl);
-					System.out.println(max_depth + " " + "from " + newurl + " to " + listOfUrl);
 					map.putIfAbsent(newurl, new HashSet<String>());
 					map.get(newurl).addAll(listOfUrl);
 					queue.addAll(listOfUrl);
