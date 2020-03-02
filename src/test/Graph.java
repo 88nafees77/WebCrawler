@@ -1,10 +1,11 @@
 package test;
 
-import java.util.*;
+interface Graph {
 
-public class Graph {
-	public Map<String, Set<String>> graph = new HashMap<String, Set<String>>();
-	public Set<String> visited = new HashSet<>();
-	public Map<String, Integer> visitedList = new HashMap<String, Integer>();
+	public void createGraph(int max_depth);
+
+	public int maxCycle(String start);
+
+	void traverseGraph(String start);
 
 }

@@ -2,11 +2,12 @@ package test;
 
 public class MainClass {
 	public static void main(String[] args) {
-		String url = "https://google.com";
+		String url = "https://www.geeksforgeeks.org/";
 		Graph graph = new WebGraph(url);
-		int max_depth = 2;
-		((WebGraph) graph).createGraph(max_depth);
-		((WebGraph) graph).travserseGraph(url);
+		int max_depth = 4;
+		graph.createGraph(max_depth);
+		// graph.traverseGraph(url);
+		System.out.println(graph.maxCycle(url));
 
 	}
 }

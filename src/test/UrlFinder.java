@@ -8,7 +8,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class UrlFinder {
+class UrlFinder {
 	public List<String> getUrl(String currentUrl) {
 		List<String> urls = new ArrayList<String>();
 		try {

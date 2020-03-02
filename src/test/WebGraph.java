@@ -2,7 +2,14 @@ package test;
 
 import java.util.*;
 
-public class WebGraph extends Graph {
+class WebGraph implements Graph {
+
+	private Map<String, Set<String>> graph = new HashMap<String, Set<String>>();
+
+	private Set<String> visited = new HashSet<>();
+
+	private Map<String, Integer> visitedList = new HashMap<String, Integer>();
+
 	UrlFinder finder = new UrlFinder();
 	String url;
 
@@ -11,7 +18,7 @@ public class WebGraph extends Graph {
 	}
 
 	public void createGraph(int max_depth) {
-		createGraph(url, graph, visited, max_depth - 1);
+		createGraph(url, graph, visited, max_depth);
 
 	}
 
@@ -19,21 +26,22 @@ public class WebGraph extends Graph {
 		if (max_depth == 0)
 			return;
 		List<String> listOfUrl = finder.getUrl(url);
+		visited.add(url);
+		System.out.println(url);
 		graph.putIfAbsent(url, new HashSet<String>());
 		graph.get(url).addAll(listOfUrl);
 		for (String urll : listOfUrl) {
 			if (!visited.contains(urll)) {
-				visited.add(urll);
 				createGraph(urll, graph, visited, max_depth - 1);
 			}
 		}
 	}
 
-	public void travserseGraph(String start) {
-		travserseGraph(start, graph, visited);
+	public void traverseGraph(String start) {
+		traverseGraph(start, graph, visited);
 	}
 
-	private void travserseGraph(String url, Map<String, Set<String>> graph, Set<String> visited) {
+	private void traverseGraph(String url, Map<String, Set<String>> graph, Set<String> visited) {
 		Queue<String> queue = new LinkedList<>();
 		queue.add(url);
 		while (!queue.isEmpty()) {
@@ -43,7 +51,7 @@ public class WebGraph extends Graph {
 				if (!visited.contains(newurl)) {
 					visited.add(newurl);
 					System.out.println(newurl);
-					List<String> listOfUrl = finder.getUrl(newurl);
+					Set<String> listOfUrl = graph.get(newurl);
 					graph.putIfAbsent(newurl, new HashSet<String>());
 					graph.get(newurl).addAll(listOfUrl);
 					queue.addAll(listOfUrl);
