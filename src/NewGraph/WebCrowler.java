@@ -19,19 +19,24 @@ public class WebCrowler {
 	}
 
 	private void createGraph(String url, Graph<String> graph, Set<Vertex<String>> visited, int max_depth) {
-		if (max_depth == 0)
+		if (max_depth == 0) {
+			System.out.println(max_depth + " " + url);
 			return;
-		List<String> listOfUrl = finder.getUrl(url);
+		}
+
+		Set<String> listOfUrl = finder.getUrl(url);
 		Vertex<String> fromNode = new Vertex<>(url);
 		visited.add(fromNode);
-		System.out.println(url);
+		System.out.println(max_depth + " " + url);
 		for (String connectedUrls : listOfUrl) {
 			Edge<String> edge = new Edge<String>(fromNode, new Vertex<>(connectedUrls));
 			graph.addEdge(edge);
 		}
 		for (String urll : listOfUrl) {
-			if (!visited.contains(urll)) {
+			if (!visited.contains(new Vertex<>(urll))) {
 				createGraph(urll, graph, visited, max_depth - 1);
+			} else {
+				System.out.println("Already visited " + urll);
 			}
 		}
 	}

@@ -1,7 +1,8 @@
 package NewGraph;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -9,8 +10,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 class UrlFinder {
-	public List<String> getUrl(String currentUrl) {
-		List<String> urls = new ArrayList<String>();
+	public Set<String> getUrl(String currentUrl) {
+		Set<String> urls = new HashSet<>();
 		try {
 			Connection connection = Jsoup.connect(currentUrl);
 			Document htmlDocument = connection.get();
