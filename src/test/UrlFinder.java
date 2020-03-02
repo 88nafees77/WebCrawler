@@ -20,7 +20,6 @@ public class UrlFinder {
 			}
 			return urls;
 		} catch (Exception e) {
-			// e.printStackTrace();
 		}
 		return urls;
 	}
